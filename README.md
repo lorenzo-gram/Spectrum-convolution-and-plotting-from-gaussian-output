@@ -8,7 +8,7 @@ If more than one output files are provided, it will perform a convolution of the
 
 The code can be launched directly on the command line or, for the laziest like me, it is possible to write a simple .sh script so that every time you need to use the script you can simply modify the .sh :) An example is given here "launch_convolution_of_spectra.sh".
 
-The code is launched with:
+The code is launched with:/
 
 python3 convolution_of_spectra.py --emin 1.5 --emax 4.5 --ewid 0.15 --grdid 300 --directories './md*/OUTPUT/QM_data/qmALL.log' --title './md*' --mod 'rep' 
 
