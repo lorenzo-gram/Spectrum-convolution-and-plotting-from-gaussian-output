@@ -84,7 +84,7 @@ for log_file in log_files:
         if len(extracted[i])>2 and extracted[i][0]=='Excited' and extracted[i][1]=='State':
             s=1
             nature_state_i_weight=0
-        if s==1 and len(extracted[i])>2 and len(extracted[i][1])>3 and extracted[i][1][:2]=='->':
+        if s==1 and len(extracted[i])>2 and len(extracted[i][1])>3 and extracted[i][1][:2]=='->': #if the basis set is DZ, the format of g16 output is "orb1 ->orb2"
             if abs(float(extracted[i][2]))>nature_state_i_weight:
                 nature_state_i_weight=abs(float(extracted[i][2]))
                 nature_state_i=f'{extracted[i][0]}{extracted[i][1]}'
@@ -96,7 +96,18 @@ for log_file in log_files:
             except ValueError:
                 s=0
                 nature_i.append(nature_state_i) #extract only the highest contribution to the nature
-                
+        elif s==1 and len(extracted[i])>2 and len(extracted[i][1])<3 and extracted[i][1][:2]=='->': #if the basis set is TZ, the format of g16 output is "orb1 -> orb2"
+            if abs(float(extracted[i][3]))>nature_state_i_weight:
+                nature_state_i_weight=abs(float(extracted[i][3]))
+                nature_state_i=f'{extracted[i][0]}{extracted[i][1]}{extracted[i][2]}'
+            try:
+                float(extracted[i+1][0])
+            except IndexError:
+                s=0
+                nature_i.append(nature_state_i)
+            except ValueError:
+                s=0
+                nature_i.append(nature_state_i)        
 ##########################################################################################################
 
     excited_state.append(excited_state_i)
