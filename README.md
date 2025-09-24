@@ -18,6 +18,6 @@ where:
 * --ewid 0.15 specifies the standard deviation of each gaussian function (in eV)
 * --grdid specifies the number of points in the plot of the spectrum
 * --directories specifies (in python string format) the path to the .log file(s)
-* --title specifies the path where you find the directories that will give the name to each different gaussian calculation (in this case md001, md002, md003,...)
+* --title specifies the path where you find the directories/files that will give the name to each different gaussian calculation (in this case md001, md002, md003,...)
 * --transition specifies if we are simulating absorption ('abs') or emission ('emi') spectrum
 * --nstates specifies the number of transitions to plot and put in the legend
